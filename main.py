@@ -24,3 +24,43 @@ class Ingredient:
 
     def __eq__(self, other):
       return self.name == other.name and self.unit == other.unit
+
+class Recipe:
+  def __init__(self, title, ingredients):
+    self.title = title
+    self.ingredients = ingredients
+
+  def add_ingredient(self, ingredient):
+    for i in self.ingredients:
+      if i == ingredient:
+        i.quantity = i.quantity + ingredient.quantity
+        return
+    self.ingredients.append(ingredient)
+
+  @staticmethod
+  def is_valid_ratio(ratio):
+    if type(ratio) == int or type(ratio) == float:
+      if ratio > 0:
+        return True
+
+    return False
+
+  def scale(self, ratio):
+    new_ingredients = []
+    for ingredient in self.ingredients:
+      new_ingredient = Ingredient(ingredient.name, ingredient.quantity * ratio, ingredient.unit)
+
+      new_ingredients.append(new_ingredient)
+
+    new_recipe = Recipe(self.title, new_ingredients)
+    return new_recipe
+
+  def __len__(self):
+    return len(self.ingredients)
+
+  def __str__(self):
+    result = self.title + "\n"
+
+    for ingredient in self.ingredients:
+      result = result + str(ingredient) + "\n"
+    return result
