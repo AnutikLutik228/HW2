@@ -47,14 +47,12 @@ class Recipe:
 
   def scale(self, ratio):
     new_ingredients = []
-
     for ingredient in self.ingredients:
       new_ingredient = Ingredient(ingredient.name, ingredient.quantity * ratio, ingredient.unit)
 
       new_ingredients.append(new_ingredient)
 
     new_recipe = Recipe(self.title, new_ingredients)
-
     return new_recipe
 
   def __len__(self):
@@ -65,7 +63,6 @@ class Recipe:
 
     for ingredient in self.ingredients:
       result = result + str(ingredient) + "\n"
-
     return result
 
 class ShoppingList:
@@ -110,9 +107,7 @@ class ShoppingList:
       unit = key[1]
       quantity = products[key]
 
-      result.append(
-        Ingredient(name, quantity, unit)
-      )
+      result.append(Ingredient(name, quantity, unit))
 
     result.sort(key=lambda x: x.name)
 
@@ -137,11 +132,7 @@ class DietaryRecipe(Recipe):
   def scale(self, ratio):
     new_recipe = super().scale(ratio)
 
-    return DietaryRecipe(
-      new_recipe.title,
-      self.diet_type,
-      new_recipe.ingredients
-    )
+    return DietaryRecipe(new_recipe.title, self.diet_type, new_recipe.ingredients)
 
   def __str__(self):
     return f"[{self.diet_type}] {self.title}"
