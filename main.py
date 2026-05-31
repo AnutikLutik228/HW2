@@ -16,14 +16,14 @@ class Ingredient:
 
     self._quantity = value
 
-    def __str__(self):
-      return (f"{self.name}: {self.quantity}{self.unit}")
+  def __str__(self):
+    return f"{self.name}: {self.quantity}{self.unit}"
 
-    def __repr__(self):
-      return (f"Ingridient('{self.name}', {self.quantity}, '{self.unit}')")
+  def __repr__(self):
+    return f"Ingredient('{self.name}', {self.quantity}, '{self.unit}')"
 
-    def __eq__(self, other):
-      return self.name == other.name and self.unit == other.unit
+  def __eq__(self, other):
+    return self.name == other.name and self.unit == other.unit
 
 class Recipe:
   def __init__(self, title, ingredients):
